@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { UIActions, START_LOADING, STOP_LOADING } from './ui.actions';
 
-interface State {
+export interface State {
   isLoading: boolean;
 }
 
@@ -26,3 +26,5 @@ export function uiReducer(state = initialState, action: UIActions) {
   }
 
 }
+
+export const getIsLoading = (state: State) => state.isLoading;
