@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Exercise } from './exercise.model';
@@ -74,34 +74,51 @@ export class TrainingService {
   }
 
   completeExercise() {
-    // this.exercises.push({
-    this.addDataToDatabase({
-      ...this.runningExercise,
-      date: new Date(),
-      state: 'completed'
+    this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex => {
+      // this.exercises.push({
+      this.addDataToDatabase({
+        // ...this.runningExercise,
+        ...ex,
+        date: new Date(),
+        state: 'completed'
+      });
+      // this.runningExercise = null;
+      // this.exerciseChanged.next(null);
+      this.store.dispatch(new Training.StopTraining());
     });
-    // this.runningExercise = null;
-    // this.exerciseChanged.next(null);
-    this.store.dispatch(new Training.StopTraining());
   }
 
   cancelExercise(progress: number) {
-    // this.exercises.push({
-    this.addDataToDatabase({
-      ...this.runningExercise,
-      duration: this.runningExercise.duration * (progress / 100),
-      calories: this.runningExercise.calories * (progress / 100),
-      date: new Date(),
-      state: 'cancelled'
+    this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex => {
+      // this.exercises.push({
+      this.addDataToDatabase({
+        // ...this.runningExercise,
+        ...ex,
+        duration: ex.duration * (progress / 100),
+        calories: ex.calories * (progress / 100),
+        date: new Date(),
+        state: 'completed'
+      });
+      // this.runningExercise = null;
+      // this.exerciseChanged.next(null);
+      this.store.dispatch(new Training.StopTraining());
     });
+    // this.exercises.push({
+    // this.addDataToDatabase({
+    //   ...this.runningExercise,
+    //   duration: this.runningExercise.duration * (progress / 100),
+    //   calories: this.runningExercise.calories * (progress / 100),
+    //   date: new Date(),
+    //   state: 'cancelled'
+    // });
     // this.runningExercise = null;
     // this.exerciseChanged.next(null);
-    this.store.dispatch(new Training.StopTraining());
+    // this.store.dispatch(new Training.StopTraining());
   }
 
-  getRunningExercise() {
-    return { ...this.runningExercise };
-  }
+  // getRunningExercise() {
+  //   return { ...this.runningExercise };
+  // }
 
   fetchCompletedOrCancelledExercises() {
     // return this.exercises.slice();
