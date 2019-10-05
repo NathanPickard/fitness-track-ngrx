@@ -29,4 +29,4 @@ export class StopTraining implements Action {
   readonly type = STOP_TRAINING;
 }
 
-export type TrainingActions = SetAvailableTrainings | SetFinishedTrainings | StartTrainings | StopTraining;
+export type TrainingActions = SetAvailableTrainings | SetFinishedTrainings | StartTraining | StopTraining;
