@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
@@ -12,9 +12,9 @@ import * as fromTraining from './training.reducer';
 
 @Injectable()
 export class TrainingService {
-  exerciseChanged = new Subject<Exercise>();
-  exercisesChanged = new Subject<Exercise[]>();
-  finishedExercisesChanged = new Subject<Exercise[]>();
+  // exerciseChanged = new Subject<Exercise>();
+  // exercisesChanged = new Subject<Exercise[]>();
+  // finishedExercisesChanged = new Subject<Exercise[]>();
 
   // private availableExercises: Exercise[] = [
   //   { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
@@ -23,8 +23,8 @@ export class TrainingService {
   //   { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 },
   // ];
 
-  private availableExercises: Exercise[] = [];
-  private runningExercise: Exercise;
+  // private availableExercises: Exercise[] = [];
+  // private runningExercise: Exercise;
   private fbSubs: Subscription[] = [];
   // private finishedExercises: Exercise[] = [];
 
@@ -61,7 +61,7 @@ export class TrainingService {
         // this.uiService.loadingStateChanged.next(false);
         this.store.dispatch(new UI.StopLoading());
         this.uiService.showSnackbar('Fetching Exercises failed, please try again later', null, 4000);
-        this.exercisesChanged.next(null);
+        // this.exercisesChanged.next(null);
       }));
   }
 
@@ -97,7 +97,7 @@ export class TrainingService {
         duration: ex.duration * (progress / 100),
         calories: ex.calories * (progress / 100),
         date: new Date(),
-        state: 'completed'
+        state: 'cancelled'
       });
       // this.runningExercise = null;
       // this.exerciseChanged.next(null);
