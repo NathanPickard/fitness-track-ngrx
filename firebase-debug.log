@@ -1,0 +1,25 @@
+[debug] [2019-10-07T01:44:00.135Z] ----------------------------------------------------------------------
+[debug] [2019-10-07T01:44:00.141Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nathan Pickard\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-10-07T01:44:00.142Z] CLI Version:   7.4.0
+[debug] [2019-10-07T01:44:00.142Z] Platform:      win32
+[debug] [2019-10-07T01:44:00.142Z] Node Version:  v10.16.1
+[debug] [2019-10-07T01:44:00.154Z] Time:          Sun Oct 06 2019 18:44:00 GMT-0700 (Pacific Daylight Time)
+[debug] [2019-10-07T01:44:00.155Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-07T01:44:00.192Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-07T01:44:00.193Z] > authorizing via signed-in user
+[debug] [2019-10-07T01:44:00.193Z] [iam] checking project ng-fitness-tracker-f1541 for permissions ["firebase.projects.get"]
+[debug] [2019-10-07T01:44:00.200Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ng-fitness-tracker-f1541:testIamPermissions  
+
+[debug] [2019-10-07T01:44:00.566Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-07T01:44:00.570Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ng-fitness-tracker-f1541  
+ 
+[debug] [2019-10-07T01:44:00.826Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Nathan Pickard\web-projects\fitness-tracker-ngrx'...
+[info] 
+[debug] [2019-10-07T01:44:00.834Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ng-fitness-tracker-f1541/webApps/-/config  
+ 
+[debug] [2019-10-07T01:44:01.189Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist/fitness-tracker
+[info] +  hosting: Local server: http://localhost:5000
